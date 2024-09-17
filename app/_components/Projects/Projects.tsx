@@ -6,9 +6,9 @@ import { project } from '@/app/data/data'
 import ProjectBox from './ProjectBox'
 import Link from 'next/link'
 
-type Props = {}
+// type Props = {}
 
-const Projects = (props: Props) => {
+const Projects = () => {
   return (
     <div className=' w-full min-h-screen h-auto pt-[90px]'>
         <div className=" w-full h-full p-5 lg:w-[80%] md:w-[90%] sm:w-[95%] mx-auto">

@@ -2,7 +2,7 @@ import React from "react";
 import NavBar from "./nv-bar";
 import ThemeTaggler from "./ThemeTaggler";
 
-type Props = {};
+// type Props = {};
 
 const navItems = [
   {
@@ -23,7 +23,7 @@ const navItems = [
   },
 ];
 
-const Header = (props: Props) => {
+const Header = () => {
   return (
     <div className=" fixed w-full h-[85px] p-4 navbarGradient z-50">
       <div className=" w-full h-full grid 1000px:grid-cols-3 grid-cols-2 items-center">

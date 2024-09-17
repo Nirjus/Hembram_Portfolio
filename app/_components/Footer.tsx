@@ -3,9 +3,9 @@ import { ArrowRight, Facebook, Instagram, Linkedin, Mail } from 'lucide-react'
 import Link from 'next/link'
 import { services } from '../data/data'
 
-type Props = {}
+// type Props = {}
 
-const Footer = (props: Props) => {
+const Footer = () => {
   return (
     <div className=' w-full h-auto pt-10 bg-slate-300 dark:bg-[#85858535]'>
         <div className='  w-full h-full p-5 lg:w-[80%] md:w-[90%] sm:w-[95%] mx-auto'>

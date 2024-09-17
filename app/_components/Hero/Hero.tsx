@@ -5,9 +5,9 @@ import { Download, Facebook, Instagram, Linkedin } from 'lucide-react'
 import Link from 'next/link'
 import Reveal from '../Animations/RevelAnimations'
 
-type Props = {}
+// type Props = {}
 
-const Hero = (props: Props) => {
+const Hero = () => {
   return (
     <div className=' w-full sm:h-screen h-auto pt-[100px]' >
       <div className=" w-full h-full p-5 lg:w-[80%] md:w-[90%] sm:w-[95%] mx-auto ">

@@ -5,9 +5,9 @@ import { skills } from '../../data/data'
 import SkillsDiv from './SkillsBox'
 import { Brain } from 'lucide-react'
 
-type Props = {}
+// type Props = {}
 
-const Skils = (props: Props) => {
+const Skils = () => {
   return (
     <div className=' w-full min-h-screen h-auto pt-[90px]'>
         <div className=" w-full h-full p-5 lg:w-[80%] md:w-[90%] sm:w-[95%] mx-auto">
