@@ -2,22 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+*{
+  scroll-behavior: smooth;
 }
 
 @layer utilities {
@@ -25,3 +11,32 @@ body {
     text-wrap: balance;
   }
 }
+
+.navbarGradient{
+  width: 100%;
+  height: 85px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.781), rgba(255, 255, 255, 0),rgba(255, 255, 255, 0), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0));
+}
+
+
+.spin-animation {
+  animation: spin infinite linear  3s;
+}
+@keyframes spin {
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
+
+
+/* .main-background{
+  background-image: url("./assets/Background.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+ width: 100%;
+ height: 100vh;
+} */

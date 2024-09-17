@@ -12,8 +12,20 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        poppins: ['var(--font-poppins)'],
+        roboto: ['var(--font-roboto)'],
+      },
+      screens: {
+        "1200px": "1200px",
+        "1000px": "1000px",
+        "800px": "800px",
+        "600px": "600px",
+        "400px": "400px"
+      }
     },
   },
   plugins: [],
+  darkMode: "class"
 };
 export default config;
