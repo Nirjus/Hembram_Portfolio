@@ -68,7 +68,7 @@ const NavBar = ({ navItems }: Props) => {
           </p>
         </div>
 
-        <div className=" absolute right-5  1000px:hidden bg-gray-300 dark:bg-gray-600/30 p-2 rounded-xl cursor-pointer">
+        <div className=" absolute right-5  1000px:hidden  bg-[#83838348] backdrop-blur p-2 rounded-xl cursor-pointer">
           <SquareMenu onClick={() => setOpenSideBar(true)} />
         </div>
       </div>
