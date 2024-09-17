@@ -17,7 +17,7 @@ const Projects = () => {
        <div className=" max-sm:overflow-hidden  grid md:grid-cols-2  grid-cols-1 lg:gap-14 md:gap-10 sm:gap-6 gap-3">
         {
          project.slice(-4).map((item, index) => (
-           <ProjectBox item={item} index={index} />
+           <ProjectBox key={index} item={item} index={index} />
          ))
         }
        </div>

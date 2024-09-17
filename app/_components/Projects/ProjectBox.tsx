@@ -1,11 +1,16 @@
 "use client";
 import { ArrowRightCircle, CalendarArrowDown } from "lucide-react";
 import React from "react";
-import {motion} from "framer-motion";
 import ProjectBoxAnimation from "../Animations/ProjectBoxAnimation";
 
 type Props = {
-  item: any;
+  item: {
+    category: string,
+        title: string,
+        dsecription: string,
+        timeLine: string,
+        sampleWorks:string[]
+  };
   index: number;
 };
 
@@ -30,8 +35,8 @@ const ProjectBox = ({ item, index }: Props) => {
             <CalendarArrowDown  />
             <div className=" text-sm">
             {
-                item.timeLine.split("-").map((i: string) => (
-                    <p className=" font-light">{i}</p>
+                item.timeLine.split("-").map((i: string, index) => (
+                    <p key={index} className=" font-light">{i}</p>
                 ))
             }
             </div>
