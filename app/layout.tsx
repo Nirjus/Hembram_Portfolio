@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import {Poppins, Roboto} from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
+import { Toaster } from "react-hot-toast";
 
 const roboto = Roboto({
   weight:["100","300","400","500","700","900"],
@@ -32,6 +33,7 @@ export default function RootLayout({
         className={`${roboto.variable} ${poppins.variable} antialiased bg-gray-200 dark:bg-[#1c1c1c]`}
       >
         {children}
+        <Toaster toastOptions={{ duration:5000 }} />
       </body>
       </ThemeProvider>
     </html>

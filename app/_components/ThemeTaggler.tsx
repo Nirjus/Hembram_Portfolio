@@ -5,7 +5,7 @@ import { MoonStar, Sun } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-const ThemeSwitch = () => {
+export const ThemeSwitch = () => {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
