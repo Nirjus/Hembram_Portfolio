@@ -7,8 +7,11 @@ export interface IUser extends Document {
     password?: string;
     subHeading: string;
     description: string;
-    photos: string[];
+    photos: { public_id: string, url: string }[];
     isAdmin: boolean;
+    faceBookLink: string;
+    instaLink: string;
+    linkdeenLink: string;
 }
 const userSchema: Schema<IUser> = new Schema({
     name: {
@@ -42,9 +45,23 @@ const userSchema: Schema<IUser> = new Schema({
     description: {
         type: String
     },
+    faceBookLink: {
+        type: String
+    },
+    instaLink: {
+        type: String
+    },
+    linkdeenLink: {
+        type: String
+    },
     photos: [
         {
-            type: String
+            public_id: {
+                type: String
+            },
+            url: {
+                type: String
+            }
         }
     ]
 })
