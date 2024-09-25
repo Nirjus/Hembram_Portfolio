@@ -3,6 +3,7 @@ import mongoose, { Document, Schema, Model } from "mongoose";
 export interface IServices extends Document {
     name: string;
     description: string;
+    _id: string;
 }
 
 const serviceSchema: Schema<IServices> = new Schema({

@@ -2,55 +2,47 @@ import axios from "axios";
 import { Loader, X } from "lucide-react";
 import React, { FormEvent, useState } from "react";
 import toast from "react-hot-toast";
+import { IServices } from '@/lib/models/serviceSchema'
 
 type Props = {
-  setOpen: (open: boolean) => void;
-  refetchAllskill: () => void;
-  data?: any;
+  service?:IServices,
+  setOpen: (open:boolean) => void;
   isUpdate?: boolean;
-};
+  refetchData: () => void;
+}
 
-const SkillModal = ({ setOpen, refetchAllskill, isUpdate=false, data }: Props) => {
-  const [skill, setSkill] = useState({
-    name: data?.name || "",
-    description: data?.description || "",
-  });
+const ServiceModal = ({service, setOpen, isUpdate=false, refetchData}: Props) => {
+  const [services, setServices] = useState({
+    name: service?.name || "",
+    description: service?.description || ""
+  })
   const [loading, setLoading] = useState(false);
-
-  const addSkillHandler = async (e:FormEvent<HTMLFormElement>) => {
+  const handleUpdateService = async (e:FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-        setLoading(true);
-      const response  = await axios.post("/api/skills/add-skills", skill);
-       setLoading(false);
+      setLoading(true);
+      const response = await axios.put(`/api/service/update-service/${service?._id}`,services);
+      setLoading(false);
       toast.success(response.data.message);
-      setSkill({
-        name:"",
-        description:""
-      })
+      refetchData();
       setOpen(false);
-      refetchAllskill();
     } catch (error: any) {
-        setLoading(false);
-      toast.error(error.response.data.message);
+      setLoading(false);
+      toast.error(error.message);
     }
   }
-  const updateSkillHandler = async (e:FormEvent<HTMLFormElement>) => {
+  const handleAddService = async (e:FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-        setLoading(true);
-      const response  = await axios.put(`/api/skills/update-skills/${data?._id}`, skill);
-       setLoading(false);
+      setLoading(true);
+      const response = await axios.post(`/api/service/add-service`,services);
+      setLoading(false);
       toast.success(response.data.message);
-      setSkill({
-        name:"",
-        description:""
-      })
+      refetchData();
       setOpen(false);
-      refetchAllskill();
     } catch (error: any) {
-        setLoading(false);
-      toast.error(error.response.data.message);
+      setLoading(false);
+      toast.error(error.message);
     }
   }
   return (
@@ -64,22 +56,22 @@ const SkillModal = ({ setOpen, refetchAllskill, isUpdate=false, data }: Props) =
         </div>
         <div>
           <p className=" text-lg dark:text-green-500 text-blue-500 font-poppins mb-2">
-            {isUpdate? "Update" : "Add"} your skill here
+            {isUpdate? "Update" : "Add"} your Services here
           </p>
-          <form action="" className=" w-full" onSubmit={isUpdate? updateSkillHandler : addSkillHandler}>
+          <form action="" className=" w-full" onSubmit={isUpdate? handleUpdateService : handleAddService}>
             <label
               htmlFor="name"
               className="text-sm dark:text-green-500 text-blue-500 font-poppins "
             >
-              Skill name
+              Service name
             </label>
             <input
               type="text"
-              placeholder="Skill tittle"
+              placeholder="Service title"
               id="name"
               name="name"
-              value={skill.name}
-              onChange={(e) => setSkill({ ...skill, name: e.target.value })}
+              value={services.name}
+              onChange={(e) => setServices({...services, name: e.target.value})}
               className=" outline-none p-3 bg-slate-400/50 rounded-md text-black placeholder:text-gray-500 w-full"
             />
             <div className=" h-5" />
@@ -94,21 +86,21 @@ const SkillModal = ({ setOpen, refetchAllskill, isUpdate=false, data }: Props) =
               rows={5}
               id="description"
               name="description"
-              value={skill.description}
-              onChange={(e) => setSkill({ ...skill, description: e.target.value })}
+              value={services.description}
+              onChange={(e) => setServices({...services, description: e.target.value})}
               className=" outline-none p-3 bg-slate-400/50 rounded-md text-black placeholder:text-gray-500 w-full"
             />
 
-            <button type="submit" disabled={!skill.name || !skill.description || loading}
+            <button type="submit" disabled={!services.name || !services.description || loading}
              className=" w-full mt-3 rounded-md p-2 bg-blue-500 dark:bg-green-500 text-white active:scale-95 duration-200 ease-in-out transition"
             >
-               {loading ? <Loader size={24} className=" mx-auto animate-spin" /> : isUpdate ? "Update Skill" : "Add Skill"} 
+               {loading ? <Loader size={24} className=" mx-auto animate-spin" /> : isUpdate ? "Upgrade service" : "Add Service"} 
             </button>
           </form>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SkillModal;
+export default ServiceModal

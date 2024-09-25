@@ -1,13 +1,14 @@
 "use client";
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import axios from "axios";
 import { useRouter, useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
 import { Eye, EyeOff } from "lucide-react";
+import Loader from "../../_components/Loader";
 
 const ResetPassword = () => {
   const searchParm = useSearchParams();
-  const token = searchParm.get("token");
+  const token = searchParm?.get("token");
   console.log(token);
 
   const router = useRouter();
@@ -140,4 +141,11 @@ const ResetPassword = () => {
   );
 };
 
-export default ResetPassword;
+
+export default function ResetPasswordPage() {
+  return (
+    <Suspense fallback={<Loader />}>
+      <ResetPassword />
+    </Suspense>
+  );
+}

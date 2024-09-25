@@ -1,4 +1,3 @@
-import { Loader } from 'lucide-react';
 import React from 'react'
 
 type Props = {
@@ -20,10 +19,10 @@ const AlertDailog = ({setOpen, onClickHandler, loading}: Props) => {
          <div className=' mt-8 flex items-center justify-between'>
          <button type="button"
             disabled={loading}
-           className=" bg-black text-white border border-black p-2 px-4 rounded-md"
+           className={` bg-black text-white border border-black p-2 px-4 rounded-md ${loading && "animate-pulse"}`}
            onClick={onClickHandler}
           >
-            {loading ? <Loader size={20} className=' mx-auto animate-spin' /> : "Yes"}
+           Yes
           </button>
           <button type="button"
            disabled={loading}

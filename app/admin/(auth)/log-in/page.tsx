@@ -22,7 +22,6 @@ const LoginPage = () => {
       setLoading(false);
       toast.success(response.data.message);
       router.push("/admin");
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       setLoading(false);
       console.log("Sign up failed");

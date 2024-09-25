@@ -38,7 +38,7 @@ const SkillBox = ({data, refetchData}: Props) => {
     <div className=' hover:scale-95 duration-200 ease-in-out transition h-fit p-3 bg-[#8e8e8e64] rounded-md w-full'>
         <div className=' mt-1 space-y-3'>
             <h1 className=' text-center lg:text-2xl md:text-xl text-lg font-poppins font-extrabold text-blue-500 dark:text-green-500 '>{data.name}</h1>
-            <div className=' h-[150px] overflow-y-scroll no-scroll-bar'>
+            <div className=' lg:h-[150px] h-[110px] overflow-y-scroll no-scroll-bar'>
             <p className=' lg:text-[15px] text-sm text-gray-700 dark:text-gray-400 '>{data.description}</p>
             </div>
             <div className=' mt-2 flex justify-between items-center'>

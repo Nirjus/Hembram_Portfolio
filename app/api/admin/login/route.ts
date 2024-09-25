@@ -50,10 +50,14 @@ export async function POST(req: Request) {
         })
 
         response.cookies.set("token", token, {
-            httpOnly: true
+            httpOnly: true,
+            maxAge: 60 * 60 * 24,
+            path: "/",
+            secure: process.env.NODE_ENV === "production", // Only secure in production
+            sameSite: "lax",
         })
         return response
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
     } catch (error: any) {
         console.error("Error returning response:", error.message);
         return NextResponse.json({

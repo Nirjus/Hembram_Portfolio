@@ -8,10 +8,12 @@ export async function POST() {
         }, { status: 200 })
         response.cookies.set("token", "", {
             httpOnly: true,
-            expires: new Date(0)
+            secure: process.env.NODE_ENV === "production", // Match your login settings
+            sameSite: "lax", // Match this with your login cookie settings
+            expires: new Date(0),
+            path: "/", // Ensures cookie is removed from all paths
         })
         return response
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
         console.log("Error in logout", error.message);
         return NextResponse.json({

@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
 
         return NextResponse.json({
             success: true,
-            message: "Skill added",
+            message: "Service added",
             service
         }, { status: 201 })
 
