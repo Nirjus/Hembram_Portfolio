@@ -1,14 +1,13 @@
-import { NextRequest, NextResponse } from "next/server"
+import { NextResponse } from "next/server"
 import connectDB from "@/lib/config/DB"
-import { getDataFromToken } from "@/lib/helper/utility/getDataformToken"
 import User from "@/lib/models/userSchema";
 
-export async function POST(request: NextRequest) {
+
+export async function GET() {
     await connectDB()
     try {
-        const userId = getDataFromToken(request);
-
-        const user = await User.findById(userId);
+        const email = "karmakarnirjus4839@gmail.com";
+        const user = await User.findOne({ email: email });
 
         if (!user) {
             return NextResponse.json({

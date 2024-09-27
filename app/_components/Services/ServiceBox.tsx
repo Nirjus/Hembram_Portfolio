@@ -2,12 +2,10 @@
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import ServiceDivAnimation from "../Animations/ServiceAnimation";
+import { IServices } from "@/lib/models/serviceSchema";
 
 type ServiceProp = {
-  item: {
-    name: string;
-    description: string;
-  };
+  item: IServices;
   index: number;
 };
 const ServiceBox = ({ item, index }: ServiceProp) => {

@@ -2,15 +2,11 @@
 import { ArrowRightCircle, CalendarArrowDown } from "lucide-react";
 import React from "react";
 import ProjectBoxAnimation from "../Animations/ProjectBoxAnimation";
+import Image from "next/image";
+import { IProject } from "@/lib/models/projectSchema";
 
 type Props = {
-  item: {
-    category: string,
-        title: string,
-        dsecription: string,
-        timeLine: string,
-        sampleWorks:string[]
-  };
+  item:IProject
   index: number;
 };
 
@@ -18,9 +14,12 @@ const ProjectBox = ({ item, index }: Props) => {
   return (
    <ProjectBoxAnimation delay={index}>
      <div className=" w-full rounded-xl h-auto bg-gradient-to-tr from-[#8685854a] to-[#6b6b6b5d] dark:from-[#8d8d8d29] shadow-lg dark:to-[#000000b0] backdrop-blur md:p-4 p-2">
-      <img
-        src={item.sampleWorks[0]}
-        className=" object-cover object-center aspect-video w-full rounded-xl"
+      <Image
+        alt={`sample-image-${item._id}`}
+        height={1000}
+        width={1000}
+        src={item?.samplWorks[0]?.url}
+        className=" object-cover aspect-video w-full rounded-xl"
       />
       <div className=" mt-2">
         <h2 className=" md:text-2xl sm:text-xl text-lg font-poppins text-zinc-700 font-medium dark:text-zinc-300">

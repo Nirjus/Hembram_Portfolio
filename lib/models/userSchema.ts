@@ -12,6 +12,7 @@ export interface IUser extends Document {
     faceBookLink: string;
     instaLink: string;
     linkdeenLink: string;
+    cvFile: { public_id: string, url: string }
 }
 const userSchema: Schema<IUser> = new Schema({
     name: {
@@ -53,6 +54,14 @@ const userSchema: Schema<IUser> = new Schema({
     },
     linkdeenLink: {
         type: String
+    },
+    cvFile: {
+        public_id: {
+            type: String
+        },
+        url: {
+            type: String
+        }
     },
     photos: [
         {

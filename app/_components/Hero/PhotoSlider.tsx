@@ -1,9 +1,13 @@
 "use client";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
 import React, { useRef } from "react";
 
 type Props = {
-  images: string[];
+  images: {
+    public_id: string,
+    url: string
+  }[];
 };
 
 const PhotoSlider = ({ images }: Props) => {
@@ -50,13 +54,15 @@ const PhotoSlider = ({ images }: Props) => {
         className=" flex overflow-x-hidden rounded-2xl w-full"
         ref={sliderRef}
       >
-        {images.map((imageUrl: string, index) => (
+        {images && images.map((imageUrl, index) => (
           <div
             key={index}
             className=" flex-none lg:h-[60vh] md:h-[50vh] sm:h-[40vh] w-full rounded-2xl"
           >
-            <img
-              src={imageUrl}
+            <Image
+            height={1000}
+            width={1000}
+              src={imageUrl?.url}
               alt={`Photo_pic_${index}`}
               className=" object-cover object-center h-full w-full "
             />

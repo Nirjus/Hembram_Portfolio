@@ -5,7 +5,7 @@ import Project from "@/lib/models/projectSchema";
 export async function GET() {
     await connectDB();
     try {
-        const projects = await Project.find({});
+        const projects = await Project.find({}).sort({ createdAt: -1 });
 
         return NextResponse.json({
             success: false,

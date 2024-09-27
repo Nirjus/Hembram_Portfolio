@@ -1,11 +1,9 @@
 import React from 'react'
 import SkillDivAnimation from '../Animations/SkillDivAnimation'
+import { ISkills } from '@/lib/models/skillsSchema'
 
 type Props = {
- skill:{
-  name: string,
-  description: string
- }
+ skill:ISkills
  index: number
 }
 

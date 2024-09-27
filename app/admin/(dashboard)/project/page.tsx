@@ -31,7 +31,7 @@ const Page = () => {
   return (
     <div>
        <div className=' flex flex-row max-sm:flex-col max-sm:gap-4 justify-between items-center'>
-     <h1 className=' underline lg:text-5xl md:text-4xl text-3xl font-poppins font-extrabold text-black dark:text-white px-2'>Project &nbsp; Section</h1>
+     <h1 className=' underline xl:text-4xl lg:text-3xl md:text-2xl text-xl font-poppins font-extrabold text-black dark:text-white px-2'>Project &nbsp; Section</h1>
 
      <button type="button" className=' flex items-center gap-x-3 p-2 bg-black rounded-md text-white dark:bg-white dark:text-black px-4 active:scale-95 duration-200 ease-in-out transition'
      onClick={projectAddPage}
