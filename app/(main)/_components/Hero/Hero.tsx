@@ -4,11 +4,11 @@ import PhotoSlider from './PhotoSlider'
 import { Download, Facebook, Instagram, Linkedin, Loader2 } from 'lucide-react'
 import Link from 'next/link'
 import Reveal from '../Animations/RevelAnimations'
-import axios from 'axios'
 import { IUser } from '@/lib/models/userSchema'
+import axios from 'axios'
 
-// type Props = {}
 const Hero = () => {
+
   const [user, setUser] = useState<IUser>({} as IUser);
   const [loading, setLoading] = useState(false);
   const getUser = async () => {
@@ -25,7 +25,7 @@ const Hero = () => {
   useEffect(() => {
    getUser();
   },[])
-  
+ 
   if(loading){
     return(
       <div className=' flex w-full justify-center items-center h-screen'>
@@ -34,8 +34,7 @@ const Hero = () => {
     )
   }
   return (
-    <div className=' w-full sm:h-screen h-auto pt-[100px]' >
-      <div className=" w-full h-full p-5 lg:w-[80%] md:w-[90%] sm:w-[95%] mx-auto ">
+    <div className=' w-full sm:h-screen h-auto sm:pt-[40px] pt-[50px]' >
         <div className=" flex max-lg:flex-col-reverse justify-center w-full h-full ">
         <div className=' w-full flex justify-center items-center sm:items-start max-sm:text-center flex-col space-y-6 lg:pr-10 max-lg:pt-10 '>
           <Reveal>
@@ -45,7 +44,7 @@ const Hero = () => {
           <h2 className=' lg:text-5xl md:text-4xl text-3xl font-extrabold text-black/80 dark:text-white/80'>{user?.subHeading}</h2>
           </Reveal>
           <Reveal>
-          <p className=' 2xl:pt-12 lg:pt-5 pt-2 lg:text-[16px] font-mono text-gray-700 dark:text-gray-300 '>{user?.description}</p>
+          <p className=' 2xl:pt-6 lg:pt-4 pt-2 lg:text-[16px] font-mono text-gray-700 dark:text-gray-300 '>{user?.description}</p>
           </Reveal>
           <div className=' w-full flex justify-between items-center max-sm:flex-col max-sm:space-y-7'>
            <Link download="HembramCV.pdf" href={user?.cvFile?.url || "https://google.com"} target="_blank">
@@ -69,7 +68,6 @@ const Hero = () => {
         </div>
        <PhotoSlider images={user?.photos}/>
         </div>
-      </div>
     </div>
   )
 }

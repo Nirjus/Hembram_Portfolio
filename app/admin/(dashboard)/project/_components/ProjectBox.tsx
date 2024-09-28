@@ -15,7 +15,7 @@ const ProjectBox = ({project}: Props) => {
         router.push(`/admin/project/update?values=${encodeURIComponent(JSON.stringify(project))}`)
     }
   return (
-    <div className=' bg-slate-500/30 hover:bg-slate-400/40 shadow-md border border-slate-500/20 dark:bg-slate-700/30 dark:hover:bg-slate-600/30 rounded-lg lg:p-4 md:p-3 p-2 w-full'>
+    <div className=' bg-slate-500/30 hover:bg-slate-400/40 shadow-md border backdrop-blur backdrop-filter h-fit border-slate-500/20 dark:bg-slate-700/30 dark:hover:bg-slate-600/30 rounded-lg lg:p-4 md:p-3 p-2 w-full'>
         <div className=" w-full rounded-lg border border-slate-500/20">
           <Image src={project?.samplWorks[0]?.url} height={1000} width={1000} alt={`sample-pic-${project._id}`} className=' object-cover rounded-lg aspect-video w-full' />
         </div>

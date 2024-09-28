@@ -6,7 +6,7 @@ const user: string = process.env.SMTP_USERNAME || "";
 const pass: string = process.env.SMTP_PASSWORD || "";
 
 export interface emailData {
-    email: string;
+    to: string;
     subject: string;
     html: React.ReactElement
 }
@@ -22,14 +22,14 @@ const transporter = nodemailer.createTransport({
 });
 
 // async..await is not allowed in global scope, must use a wrapper
-const sendMail = async (emailData: emailData) => {
+const sendMail = async ({ to, subject, html }: emailData) => {
     // send mail with defined transport object
     try {
-        const emailHtml = await render(emailData.html);
+        const emailHtml = await render(html);
         const info = await transporter.sendMail({
             from: user, // sender address
-            to: emailData.email, // list of receivers
-            subject: emailData.subject, // Subject line
+            to: to, // list of receivers
+            subject: subject, // Subject line
             html: emailHtml, // html body
         });
 

@@ -36,7 +36,7 @@ const Skils = () => {
   }
   return (
     <div className=' w-full min-h-screen h-auto pt-[90px]'>
-        <div className=" w-full h-full p-5 lg:w-[80%] md:w-[90%] sm:w-[95%] mx-auto">
+       
       <SectionHeader title='Skills' icon={Brain} description='All skills which I accrued through my full carriers, and gain knowledge' />
 
       <div className=" h-full -z-10 800px:p-5 p-2 mt-5">
@@ -56,7 +56,6 @@ const Skils = () => {
         )
        }
       </div>
-        </div>
     </div>
   )
 }

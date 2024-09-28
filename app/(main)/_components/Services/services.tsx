@@ -36,7 +36,7 @@ const Services = () => {
   }
   return (
     <div className=' w-full min-h-screen h-auto pt-[90px]'>
-    <div className=" w-full h-full p-5 lg:w-[80%] md:w-[90%] sm:w-[95%] mx-auto">
+    
   <SectionHeader title='Services' icon={HeartHandshake} description='All the services you provided for our beloved customers, you can check it out.' />
   <div className=" lg:p-5 md:p-3 p-2 mt-[60px] space-y-5">
     {
@@ -52,8 +52,7 @@ const Services = () => {
           <p className=' text-sm text-center text-gray-700 dark:text-gray-300'>Add a Services for showcase</p>
           </div>
         )
-       }
-  </div>
+      }
   </div>
   )
 }

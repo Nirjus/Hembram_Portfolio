@@ -1,6 +1,7 @@
 "use client";
+import { usePathname } from "next/navigation";
 import { SquareMenu, X } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import ThemeTaggler from "./ThemeTaggler";
 import Link from "next/link";
@@ -10,6 +11,7 @@ type Props = {
 };
 
 const NavBar = ({ navItems }: Props) => {
+  const pathname = usePathname();
   const [select, setSelect] = useState(0);
   const [openSideBar, setOpenSideBar] = useState(false);
   const handleSelect = (index: number) => {
@@ -17,7 +19,12 @@ const NavBar = ({ navItems }: Props) => {
     setOpenSideBar(false);
   };
   
-
+  useEffect(() => {
+    const currentIndex = navItems.findIndex((route) => route.link === pathname);
+    if(currentIndex !== -1){
+      setSelect(currentIndex);
+    }
+  },[navItems, pathname])
   return (
     <nav>
       <div className=" mx-auto w-fit flex items-center space-x-6">
@@ -40,6 +47,7 @@ const NavBar = ({ navItems }: Props) => {
           <div className=" 1000px:hidden mb-10">
             <ThemeTaggler />
           </div>
+
           {navItems.map((navItem, index) => (
            <Link href={navItem.link} key={index} scroll className=" max-1000px:w-full">
             <div

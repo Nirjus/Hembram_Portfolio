@@ -49,7 +49,7 @@ const PhotoSlider = ({ images }: Props) => {
     <div className=" relative w-full flex justify-center items-center"
     >
      <div className=" relative bg-transparent overflow-hidden p-2 rounded-2xl"> 
-      <div className="spin-animation -z-10 absolute top-0 left-0 right-0 bottom-0 m-auto bg-blue-500 dark:bg-green-500 h-[200%] w-[50%]" />
+      <div className="spin-animation -z-10 absolute top-0 left-0 right-0 bottom-0 m-auto bg-blue-500 dark:bg-green-500 h-[200%] w-[40%]" />
      <div
         className=" flex overflow-x-hidden rounded-2xl w-full"
         ref={sliderRef}
@@ -57,14 +57,14 @@ const PhotoSlider = ({ images }: Props) => {
         {images && images.map((imageUrl, index) => (
           <div
             key={index}
-            className=" flex-none lg:h-[60vh] md:h-[50vh] sm:h-[40vh] w-full rounded-2xl"
+            className=" flex-none w-full rounded-2xl"
           >
             <Image
             height={1000}
             width={1000}
               src={imageUrl?.url}
               alt={`Photo_pic_${index}`}
-              className=" object-cover object-center h-full w-full "
+              className=" object-cover aspect-video w-full"
             />
           </div>
         ))}

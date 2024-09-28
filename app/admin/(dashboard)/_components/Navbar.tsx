@@ -1,4 +1,4 @@
-import { ThemeSwitch } from "@/app/_components/ThemeTaggler";
+import { ThemeSwitch } from "@/app/(main)/_components/ThemeTaggler";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import React from "react";

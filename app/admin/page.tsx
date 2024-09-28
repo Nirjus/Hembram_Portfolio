@@ -4,9 +4,9 @@ import { ArrowRight, LogOut } from "lucide-react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import NavBar from "./_components/NavBar";
-import Reveal from "../_components/Animations/RevelAnimations";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Reveal from "../(main)/_components/Animations/RevelAnimations";
 
 // type Props = {}
 

@@ -2,27 +2,7 @@ import React from "react";
 import NavBar from "./nv-bar";
 import ThemeTaggler from "./ThemeTaggler";
 import Link from "next/link";
-
-// type Props = {};
-
-const navItems = [
-  {
-    item: "Home",
-    link: "#home",
-  },
-  {
-    item: "Skills",
-    link: "#skills",
-  },
-  {
-    item: "Project",
-    link: "#project",
-  },
-  {
-    item: "Services",
-    link: "#services",
-  },
-];
+import { routes } from "../constants/NavBarRoutes";
 
 const Header = () => {
   return (
@@ -43,7 +23,7 @@ const Header = () => {
         </Link>
          </div>
         </div>
-        <NavBar navItems={navItems} />
+        <NavBar navItems={routes} />
         <div className=" max-1000px:hidden">
             <ThemeTaggler />
         </div>

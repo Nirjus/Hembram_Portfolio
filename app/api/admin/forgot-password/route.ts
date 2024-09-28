@@ -29,13 +29,13 @@ export async function POST(req: NextRequest) {
         const url = `${domainName}/admin/reset-password?token=${token}`
         const emailHtml = Email({ userName: user.name, url: url })
 
-        await sendMail({ email: email, subject: "Password reset email", html: emailHtml });
+        await sendMail({ to: email, subject: "Password reset email", html: emailHtml });
 
         return NextResponse.json({
             success: true,
             message: `Please chacke your email: ${user.email} , password reset link is send`
         }, { status: 201 })
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
     } catch (error: any) {
         return NextResponse.json({
             success: false,

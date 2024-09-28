@@ -27,7 +27,8 @@ const projectSchema: Schema<IProject> = new Schema({
     },
     category: {
         type: String,
-        required: true
+        required: true,
+        lowercase: true,
     },
     timeLine: {
         type: String,
