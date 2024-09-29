@@ -4,7 +4,7 @@ import User from "@/lib/models/userSchema";
 
 const userEmail = process.env.USER_EMAIL!;
 
-export async function GET() {
+export async function POST() {
     await connectDB()
     try {
 

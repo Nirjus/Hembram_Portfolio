@@ -3,7 +3,7 @@ import connectDB from "@/lib/config/DB";
 import Service from "@/lib/models/serviceSchema";
 
 
-export async function GET() {
+export async function POST() {
     await connectDB();
     try {
         const services = await Service.find({});

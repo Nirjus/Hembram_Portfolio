@@ -6,7 +6,7 @@ import User from "@/lib/models/userSchema";
 import { NextRequest, NextResponse } from "next/server";
 
 
-export async function GET(req: NextRequest) {
+export async function POST(req: NextRequest) {
     await connectDB();
     try {
         const userId = getDataFromToken(req);

@@ -3,7 +3,7 @@ import connectDB from "@/lib/config/DB";
 import Skills from "@/lib/models/skillsSchema";
 
 
-export async function GET() {
+export async function POST() {
     await connectDB();
     try {
         const skills = await Skills.find({});

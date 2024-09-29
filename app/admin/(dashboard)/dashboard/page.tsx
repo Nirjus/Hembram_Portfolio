@@ -11,7 +11,7 @@ const Dashboard = () => {
   const getAllData = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("/api/admin/allData");
+      const response = await axios.post("/api/admin/allData");
       setData(response.data.data);
     } catch (error: any) {
       console.log(error.response.data.message);

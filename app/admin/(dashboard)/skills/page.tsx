@@ -14,7 +14,7 @@ const Page = () => {
   const getAllSkills = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`/api/skills/getAll-skills?_=${new Date().getTime()}`);
+      const response = await axios.post(`/api/skills/getAll-skills`);
       setLoading(false);
       setSkills(response.data.skills);
     } catch (error:any) {

@@ -14,7 +14,7 @@ const Page = () => {
   const getAllProject = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`/api/project/getAll-project?_=${new Date().getTime()}`);
+      const response = await axios.post(`/api/project/getAll-project`);
       setProjects(response.data.projects);
     } catch (error: any) {
       console.error(error.message);

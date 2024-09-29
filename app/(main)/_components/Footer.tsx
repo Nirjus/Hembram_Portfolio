@@ -11,7 +11,7 @@ const Footer = () => {
   const getUser = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`/api/user/getUser?_=${new Date().getTime()}`);
+      const response = await axios.post(`/api/user/getUser`);
       setUser(response.data.user);
     } catch (error: any) {
       console.error(error.response.data.message);

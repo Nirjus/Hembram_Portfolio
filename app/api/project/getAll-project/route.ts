@@ -8,20 +8,15 @@ const dbCall = async () => {
 dbCall();
 
 
-export async function GET() {
+export async function POST() {
     try {
         const projects = await Project.find({}).sort({ createdAt: -1 });
 
-        const response = NextResponse.json({
-            success: true,
-            message: "Projects returned successfully",
+        return NextResponse.json({
+            success: false,
+            message: "Projects are return successfully",
             projects
-        }, { status: 200 });
-
-        // Disable caching with Cache-Control headers
-        response.headers.set("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
-
-        return response;
+        }, { status: 200 })
 
     } catch (error: any) {
         console.error("Projects are not fetched, ", error.message);

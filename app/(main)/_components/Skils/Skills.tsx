@@ -15,7 +15,7 @@ const Skils = () => {
   const getUser = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`/api/skills/getAll-skills?_=${new Date().getTime()}`);
+      const response = await axios.post(`/api/skills/getAll-skills`);
       setSkills(response.data.skills);
     } catch (error: any) {
       console.error(error.response.data.message);
