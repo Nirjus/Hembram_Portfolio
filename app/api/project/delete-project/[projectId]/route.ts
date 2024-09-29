@@ -4,9 +4,13 @@ import { getDataFromToken } from "@/lib/helper/utility/getDataformToken";
 import Project from "@/lib/models/projectSchema";
 import { NextRequest, NextResponse } from "next/server";
 
+const dbCall = async () => {
+    await connectDB()
+}
+dbCall();
 
 export async function DELETE(req: NextRequest) {
-    await connectDB();
+
     try {
         const userId = getDataFromToken(req);
         if (!userId) {

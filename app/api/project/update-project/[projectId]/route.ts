@@ -4,9 +4,12 @@ import { getDataFromToken } from "@/lib/helper/utility/getDataformToken";
 import Project from "@/lib/models/projectSchema";
 import cloudinary from "@/lib/config/cloudinary";
 
+const dbCall = async () => {
+    await connectDB()
+}
+dbCall();
 
 export async function PUT(req: NextRequest) {
-    await connectDB();
     try {
         const userId = getDataFromToken(req);
         const { category, title, description, timeLine, visitLink, samplWorks } = await req.json();

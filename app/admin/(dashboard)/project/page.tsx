@@ -14,7 +14,11 @@ const Page = () => {
   const getAllProject = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("/api/project/getAll-project");
+      const response = await axios.get("/api/project/getAll-project",{
+        headers: {
+          'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate'
+        }
+      });
       setProjects(response.data.projects);
     } catch (error: any) {
       console.error(error.message);

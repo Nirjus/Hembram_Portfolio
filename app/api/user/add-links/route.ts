@@ -21,13 +21,13 @@ export async function PUT(req: NextRequest) {
                 message: "Error in updating user"
             }, { status: 400 })
         }
-        if (faceBookLink && faceBookLink !== user.faceBookLink) {
+        if (faceBookLink !== user.faceBookLink) {
             user.faceBookLink = faceBookLink
         }
-        if (linkdeenLink && linkdeenLink !== user.linkdeenLink) {
+        if (linkdeenLink !== user.linkdeenLink) {
             user.linkdeenLink = linkdeenLink
         }
-        if (instaLink && instaLink !== user.instaLink) {
+        if (instaLink !== user.instaLink) {
             user.instaLink = instaLink
         }
 
