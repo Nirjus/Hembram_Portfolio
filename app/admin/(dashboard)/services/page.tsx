@@ -14,7 +14,7 @@ const Page = () => {
   const getAllServices = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("/api/service/get-all");
+      const response = await axios.get(`/api/service/get-all?_=${new Date().getTime()}`);
       setLoading(false);
       setServices(response.data.services);
     } catch (error:any) {

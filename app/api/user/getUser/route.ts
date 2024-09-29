@@ -2,12 +2,13 @@ import { NextResponse } from "next/server"
 import connectDB from "@/lib/config/DB"
 import User from "@/lib/models/userSchema";
 
+const userEmail = process.env.USER_EMAIL!;
 
 export async function GET() {
     await connectDB()
     try {
-        const email = "karmakarnirjus4839@gmail.com";
-        const user = await User.findOne({ email: email });
+
+        const user = await User.findOne({ email: userEmail });
 
         if (!user) {
             return NextResponse.json({

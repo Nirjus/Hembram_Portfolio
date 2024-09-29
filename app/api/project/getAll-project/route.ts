@@ -8,7 +8,7 @@ const dbCall = async () => {
 dbCall();
 
 
-export async function POST() {
+export async function GET() {
     try {
         const projects = await Project.find({}).sort({ createdAt: -1 });
 

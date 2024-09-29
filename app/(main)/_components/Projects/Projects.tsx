@@ -16,7 +16,7 @@ const Projects = () => {
   const getUser = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("/api/project/getAll-project");
+      const response = await axios.get(`/api/project/getAll-project?_=${new Date().getTime()}`);
       setProjects(response.data.projects);
     } catch (error: any) {
       console.error(error.response.data.message);

@@ -15,7 +15,8 @@ const Services = () => {
   const getUser = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("/api/service/get-all");
+      const response = await axios.get(`/api/service/get-all?_=${new Date().getTime()}`);
+      
       setServices(response.data.services);
     } catch (error: any) {
       console.error(error.response.data.message);
