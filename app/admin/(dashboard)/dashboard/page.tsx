@@ -92,7 +92,7 @@ const Dashboard = () => {
            </div>
              </div>
               </Link>
-              <Link target="_blank" href={data?.faceBookLink || "https://google.com"}>
+              <Link target="_blank" href={data?.instaLink || "https://google.com"}>
              <div className='p-2 duration-200 bg-gradient-to-r from-indigo-500 via-pink-500 to-yellow-400 transition-all active:scale-95 flex justify-between items-center rounded-sm '>
           <div className=' flex items-center gap-x-2'>
           <div className=' bg-white p-2 rounded-full'>
