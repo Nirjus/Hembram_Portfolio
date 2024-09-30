@@ -1,9 +1,10 @@
+export const dynamic = 'force-dynamic'
 import { NextResponse } from "next/server";
 import connectDB from "@/lib/config/DB";
 import Service from "@/lib/models/serviceSchema";
 
 
-export async function POST() {
+export async function GET() {
     await connectDB();
     try {
         const services = await Service.find({});
