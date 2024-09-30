@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic'
 import { NextResponse } from "next/server";
 import connectDB from "@/lib/config/DB";
 import Project from "@/lib/models/projectSchema";
@@ -8,7 +9,7 @@ const dbCall = async () => {
 dbCall();
 
 
-export async function POST() {
+export async function GET() {
     try {
         const projects = await Project.find({}).sort({ createdAt: -1 });
 

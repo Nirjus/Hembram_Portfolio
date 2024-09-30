@@ -1,10 +1,11 @@
+export const dynamic = 'force-dynamic'
 import { NextResponse } from "next/server"
 import connectDB from "@/lib/config/DB"
 import User from "@/lib/models/userSchema";
 
 const userEmail = process.env.USER_EMAIL!;
 
-export async function POST() {
+export async function GET() {
     await connectDB()
     try {
 

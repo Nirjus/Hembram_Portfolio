@@ -1,13 +1,11 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import SectionHeader from '../Section-heading'
-// import { skills } from '../../data/data'
 import SkillsDiv from './SkillsBox'
 import { Brain, Loader2 } from 'lucide-react'
 import { ISkills } from '@/lib/models/skillsSchema'
 import axios from 'axios'
 
-// type Props = {}
 
 const Skils = () => {
   const [skills, setSkills] = useState<ISkills[]>([] as ISkills[]);
@@ -15,7 +13,7 @@ const Skils = () => {
   const getUser = async () => {
     setLoading(true);
     try {
-      const response = await axios.post(`/api/skills/getAll-skills`);
+      const response = await axios.get(`/api/skills/getAll-skills`);
       setSkills(response.data.skills);
     } catch (error: any) {
       console.error(error.response.data.message);

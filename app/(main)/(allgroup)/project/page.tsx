@@ -14,7 +14,7 @@ const Page = () => {
   const getUser = async () => {
     setLoading(true);
     try {
-      const response = await axios.post(`/api/project/getAll-project`);
+      const response = await axios.get(`/api/project/getAll-project`);
       setProjects(response.data.projects);
       const allCategorySet  = new Set<string>(["All"]);
       response.data.projects.forEach((item:any) => {
