@@ -57,14 +57,14 @@ const PhotoSlider = ({ images }: Props) => {
         {images && images.map((imageUrl, index) => (
           <div
             key={index}
-            className=" flex-none w-full rounded-2xl"
+            className=" flex-none w-full h-[62.5vh] max-sm:h-[40vh] rounded-2xl"
           >
             <Image
             height={1000}
             width={1000}
               src={imageUrl?.url}
               alt={`Photo_pic_${index}`}
-              className=" object-cover aspect-video w-full"
+              className=" object-cover h-full aspect-video w-full"
             />
           </div>
         ))}

@@ -10,13 +10,13 @@ const Header = () => {
       <div className=" w-full h-full grid 1000px:grid-cols-3 grid-cols-2 items-center">
         <div className=" bg-transparent">
           
-         <Link href={"#home"} scroll>
+         <Link href={"#"} >
          <h1 className=" max-lg:hidden font-poppins text-3xl font-bold bg-gradient-to-r inline-block from-zinc-900 to-slate-500/70 dark:from-zinc-200 dark:to-zinc-700 bg-clip-text text-transparent">
             HEMBRAM
           </h1>
          </Link>
          <div className=" lg:hidden w-fit px-2 bg-[#83838348] backdrop-blur rounded-md p-1">
-        <Link href={"#home"} scroll>
+        <Link href={"#"} >
         <h1 className=" font-poppins font-extrabold text-2xl text-white">
             H<span className=" text-blue-500 dark:text-green-500">.</span>
           </h1>
