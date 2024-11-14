@@ -7,7 +7,8 @@ const connectDB = async () => {
         return;
     }
     try {
-        await mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017")
+        const mongodbConnectionString = process.env.NODE_ENV === "production" ? process.env.MONGODB_URI! : "mongodb://localhost:27017/hembram_portfolio"
+        await mongoose.connect(mongodbConnectionString)
         console.log(`Database is connected: ${mongoose.connection.host}`);
         isConnected = true;
     } catch (error) {

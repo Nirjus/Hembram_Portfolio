@@ -49,7 +49,8 @@ export async function PUT(req: NextRequest) {
 
         return NextResponse.json({
             success: true,
-            message: "Profile picture updated"
+            message: "Profile picture updated",
+            user
         }, { status: 200 })
 
     } catch (error: any) {

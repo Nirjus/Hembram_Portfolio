@@ -1,38 +1,15 @@
-'use client'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import PhotoSlider from './PhotoSlider'
-import { Download, Facebook, Instagram, Linkedin, Loader2 } from 'lucide-react'
+import { Download, Facebook, Instagram, Linkedin } from 'lucide-react'
 import Link from 'next/link'
 import Reveal from '../Animations/RevelAnimations'
 import { IUser } from '@/lib/models/userSchema'
-import axios from 'axios'
 
-const Hero = () => {
+type Props = {
+  user:IUser
+}
+const Hero = ({user}:Props) => {
 
-  const [user, setUser] = useState<IUser>({} as IUser);
-  const [loading, setLoading] = useState(false);
-  const getUser = async () => {
-    setLoading(true);
-    try {
-      const response = await axios.get(`/api/user/getUser`);
-      setUser(response.data.user);
-    } catch (error: any) {
-      console.error(error.response.data.message);
-    }finally{
-      setLoading(false);
-    }
-  }
-  useEffect(() => {
-   getUser();
-  },[])
- 
-  if(loading){
-    return(
-      <div className=' flex w-full justify-center items-center h-screen'>
-        <Loader2 size={35} className=' text-blue-500 dark:text-green-500 animate-spin' />
-      </div>
-    )
-  }
   return (
     <div className=' w-full sm:h-screen h-auto sm:pt-[40px] pt-[50px]' >
         <div className=" flex max-lg:flex-col-reverse justify-center w-full h-full ">

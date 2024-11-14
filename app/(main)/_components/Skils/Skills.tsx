@@ -1,37 +1,15 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import SectionHeader from '../Section-heading'
 import SkillsDiv from './SkillsBox'
-import { Brain, Loader2 } from 'lucide-react'
+import { Brain } from 'lucide-react'
 import { ISkills } from '@/lib/models/skillsSchema'
-import axios from 'axios'
 
-
-const Skils = () => {
-  const [skills, setSkills] = useState<ISkills[]>([] as ISkills[]);
-  const [loading, setLoading] = useState(false);
-  const getUser = async () => {
-    setLoading(true);
-    try {
-      const response = await axios.get(`/api/skills/getAll-skills`);
-      setSkills(response.data.skills);
-    } catch (error: any) {
-      console.error(error.response.data.message);
-    }finally{
-      setLoading(false);
-    }
-  }
-  useEffect(() => {
-   getUser();
-  },[])
-  
-  if(loading){
-    return(
-      <div className=' flex w-full justify-center items-center h-screen'>
-        <Loader2 size={35} className=' text-blue-500 dark:text-green-500 animate-spin' />
-      </div>
-    )
-  }
+type Props = {
+  skills: ISkills[]
+}
+const Skils = ({skills}:Props) => {
+ 
   return (
     <div className=' w-full min-h-screen h-auto pt-[90px]'>
        
@@ -46,7 +24,7 @@ const Skils = () => {
         }
        </div>
        {
-       !loading && skills.length === 0 && (
+       skills.length === 0 && (
           <div className=' mt-12 p-1'>
           <p className=' text-center text-lg text-gray-700 dark:text-gray-300 font-mono'>No Skills in this section</p>
           <p className=' text-sm text-center text-gray-700 dark:text-gray-300'>Add a Skill for showcase</p>

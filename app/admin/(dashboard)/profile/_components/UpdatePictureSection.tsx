@@ -4,11 +4,13 @@ import axios from 'axios';
 import { Plus, X } from 'lucide-react';
 import Image from 'next/image';
 import toast from 'react-hot-toast';
-import { useUser } from '@/app/admin/context/UserContext';
-
-
-const Page = () => {
-    const {user, refetchUser} = useUser()
+import { IUser } from '@/lib/models/userSchema';
+import { useRouter } from 'next/navigation';
+type Props = {
+  user:IUser
+}
+const PicPage = ({user}:Props) => {
+  const router = useRouter()
   const [images, setImages] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const maxFileSize = 50 * 1024; // 50KB in bytes
@@ -41,7 +43,7 @@ const Page = () => {
       }
       const response = await axios.put("/api/user/pic-update", {photos:images});
       toast.success(response.data.message);
-      await refetchUser();
+      router.refresh();
     } catch (error: any) {
       console.error("Error in updating user INFO", error.response.data.message);
       toast.error(error.response.data.message);
@@ -126,4 +128,4 @@ ${loading && " animate-pulse bg-blue-300/30 dark:bg-green-300/20"}
   )
 }
 
-export default Page
+export default PicPage

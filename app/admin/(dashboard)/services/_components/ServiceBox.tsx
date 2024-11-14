@@ -7,10 +7,11 @@ import AlertDailog from "../../_components/Alert-dailog";
 
 type Props = {
   service: IServices;
-  refetchData: () => void;
+  onUpdate: (newService:any) => void;
+  onDelete: () => void
 };
 
-const ServiceBox = ({ service, refetchData }: Props) => {
+const ServiceBox = ({ service, onUpdate, onDelete }: Props) => {
   const [open, setOpen] = useState(false);
   const [openAlertDialog, setOpenAlertDilog] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -18,14 +19,14 @@ const ServiceBox = ({ service, refetchData }: Props) => {
   const serviceDeleteHandler = async () => {
     try {
       setLoading(true);
-      const response  = await axios.delete(`/api/service/delete-service/${service?._id}`);
-      setLoading(false);
+      const response  = await axios.delete(`/api/service?serviceId=${service?._id}`);
       toast.success(response.data.message);
+      onDelete()
       setOpenAlertDilog(false);
-      refetchData();
     } catch (error: any) {
-      setLoading(false);
       toast.error(error.response.data.message);
+    }finally{
+      setLoading(false)
     }
   }
   return (
@@ -59,7 +60,7 @@ const ServiceBox = ({ service, refetchData }: Props) => {
       </div>
     </div>
     {
-          open && <ServiceModal isUpdate service={service} refetchData={refetchData} setOpen={setOpen} />
+          open && <ServiceModal isUpdate service={service} crudCall={onUpdate} setOpen={setOpen} />
         }
         {
           openAlertDialog && <AlertDailog loading={loading} setOpen={setOpenAlertDilog} onClickHandler={serviceDeleteHandler} />

@@ -1,65 +1,91 @@
-'use client'
-import React, { useState } from "react";
+import React from "react";
 import Hero from "./_components/Hero/Hero";
 import Skills from "./_components/Skils/Skills";
 import Projects from "./_components/Projects/Projects";
 import Services from "./_components/Services/services";
-import Link from "next/link";
-import { homeRoutes } from "./constants/NavBarRoutes";
-import { ArrowDown, ChevronLeft, ChevronRight } from "lucide-react";
+import SideToggleBar from "./_components/sideToggleBar";
 
-const Page = () => {
+const domainName = process.env.DOMAIN_NAME!
+const getUser = async () => {
+  try {
+    const response = await fetch(`${domainName}/api/user`,{
+      method:"GET",
+      cache:"no-store"
+    });
+    if(response.ok){
+      const data = await response.json()
+      return data.user
+    }
+  } catch (error: any) {
+    console.log("[ERROR] error in fetching user: ",error.message);
+  }
+}
+const getSkills = async () => {
+  try {
+    const response = await fetch(`${domainName}/api/skills`,{
+      method:"GET",
+      cache:"no-store"
+    });
+    if(response.ok){
+      const data = await response.json()      
+      return data.skills;
+    }
+  } catch (error: any) {
+    console.log("[ERROR] error in fetching skills: ", error.message);
+  }
+}
+const getProjects = async () => {
+  try {
+    const response = await fetch(`${domainName}/api/project`,{
+      method:"GET",
+      cache:"no-store"
+    });
+    if(response.ok){
+      const data = await response.json()
+      return data.projects;
+    }
+  } catch (error: any) {
+    console.log("[ERROR] error in fetching projects: ",error.message);
+  }
+}
+const getServices = async () => {
+  try {
+    const response = await fetch(`${domainName}/api/service`,{
+      method:"GET",
+      cache:"no-store"
+    });
+    if(response.ok){
+      const data = await response.json()
+      return data.services;
+    }
+  } catch (error: any) {
+    console.error("[ERROR] error in fetching services: ", error.message);
+  }
+}
+export default async function HomePage() {
+const [resultUser,resultSkills,resultProjects,resultServices] = await Promise.all([
+  getUser(),
+  getSkills(),
+  getProjects(),
+  getServices()
+])
 
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-
-  // Toggle drawer state
-  const toggleDrawer = () => {
-    setIsDrawerOpen(!isDrawerOpen);
-  };
   return (
     <div className=" relative main-background">
-      <button
-        onClick={toggleDrawer}
-        className="fixed h-[40px] flex items-center gap-2 top-[90px] rounded-r-full left-0 bg-blue-500 dark:bg-green-500 text-white p-2 z-20 "
-      >
-        <p className=" sm:block hidden">
-        {isDrawerOpen ? "Close Drawer" : "Open Drawer"}
-        </p>
-        {
-          isDrawerOpen ?
-          <ChevronLeft size={24} /> : <ChevronRight size={24} />
-        }
-      </button>
-     <div className={` p-2 fixed top-[130px] z-20 left-0 flex flex-col gap-5 rounded bg-gray-500/50 backdrop-blur backdrop-filter transition-transform duration-300 ease-in-out
-      ${isDrawerOpen ? "translate-x-0" : "-translate-x-full"}
-      `}>
-          {
-            homeRoutes.map((item, index) => (
-              <div key={index} className=" text-center">
-                <Link href={item.link} className=" hover:underline">
-              {item.item}
-              </Link>
-              {
-                index === homeRoutes.length -1 ? "" : <ArrowDown size={20} className=" mx-auto" />
-              } 
-              </div>
-            ))
-          }
-     </div>
+    <SideToggleBar />
       <section id="home">
-        <Hero />
+        <Hero user={resultUser} />
       </section>
       <section id="skills">
-        <Skills />
+        <Skills skills={resultSkills} />
       </section>
       <section id="project">
-        <Projects />
+        <Projects projects={resultProjects} />
       </section>
       <section id="services">
-        <Services />
+        <Services services={resultServices} />
       </section>
     </div>
   );
 };
 
-export default Page;

@@ -65,7 +65,7 @@ const Page = ({ params }: Props) => {
         return;
       }
       const projectSample={...project,samplWorks:workImage}
-        const response = await axios.post("/api/project/add-project",projectSample);
+        const response = await axios.post("/api/project",projectSample);
         toast.success(response.data.message);
         router.push("/admin/project");
     } catch (error: any) {
@@ -83,7 +83,7 @@ const Page = ({ params }: Props) => {
         return;
       }
       const projectSample={...project,samplWorks:workImage}
-        const response = await axios.put(`/api/project/update-project/${project._id}`, projectSample);  
+        const response = await axios.put(`/api/project?projectId=${project._id}`, projectSample);  
         toast.success(response.data.message);
         router.push("/admin/project");
     } catch (error: any) {
@@ -96,7 +96,7 @@ const Page = ({ params }: Props) => {
   const handleDeleteProject = async () => {
    setDeleteLoader(true)
     try {
-      const response = await axios.delete(`/api/project/delete-project/${project._id}`);
+      const response = await axios.delete(`/api/project?projectId=${project._id}`);
       toast.success(response.data.message);
       router.push("/admin/project")
     } catch (error: any) {

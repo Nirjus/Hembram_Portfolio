@@ -41,7 +41,8 @@ export async function PUT(req: NextRequest) {
         await user.save();
         return NextResponse.json({
             success: true,
-            message: "Your CV is updated"
+            message: "Your CV is updated",
+            user
         }, { status: 200 })
 
     } catch (error: any) {

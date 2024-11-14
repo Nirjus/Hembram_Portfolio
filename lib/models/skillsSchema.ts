@@ -1,6 +1,7 @@
 import mongoose, { Document, Schema, Model } from "mongoose";
 
 export interface ISkills extends Document {
+    _id: string;
     name: string;
     description: string;
 }

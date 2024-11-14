@@ -5,12 +5,12 @@ import toast from "react-hot-toast";
 
 type Props = {
   setOpen: (open: boolean) => void;
-  refetchAllskill: () => void;
+  crudCall: (newSkill:any) => void;
   data?: any;
   isUpdate?: boolean;
 };
 
-const SkillModal = ({ setOpen, refetchAllskill, isUpdate=false, data }: Props) => {
+const SkillModal = ({ setOpen, crudCall, isUpdate=false, data }: Props) => {
   const [skill, setSkill] = useState({
     name: data?.name || "",
     description: data?.description || "",
@@ -20,37 +20,37 @@ const SkillModal = ({ setOpen, refetchAllskill, isUpdate=false, data }: Props) =
   const addSkillHandler = async (e:FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-        setLoading(true);
-      const response  = await axios.post("/api/skills/add-skills", skill);
-       setLoading(false);
+      setLoading(true);
+      const response  = await axios.post("/api/skills", skill);
       toast.success(response.data.message);
       setSkill({
         name:"",
         description:""
       })
-      setOpen(false);
-      refetchAllskill();
+      crudCall(response.data.skill);
+      setOpen(false)
     } catch (error: any) {
-        setLoading(false);
       toast.error(error.response.data.message);
+    }finally{
+      setLoading(false);
     }
   }
   const updateSkillHandler = async (e:FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
         setLoading(true);
-      const response  = await axios.put(`/api/skills/update-skills/${data?._id}`, skill);
-       setLoading(false);
+      const response  = await axios.put(`/api/skills?skillId=${data?._id}`, skill);
       toast.success(response.data.message);
       setSkill({
         name:"",
         description:""
       })
+      crudCall(response.data.skill);
       setOpen(false);
-      refetchAllskill();
     } catch (error: any) {
-        setLoading(false);
       toast.error(error.response.data.message);
+    }finally{
+      setLoading(false);
     }
   }
   return (

@@ -12,7 +12,7 @@ export const getDataFromToken = (req: NextRequest) => {
         const decodedToken = jwt.verify(token, jwtSecret) as JwtPayload;
 
         return decodedToken._id;
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        
     } catch (error: any) {
         throw new Error(error.message);
     }

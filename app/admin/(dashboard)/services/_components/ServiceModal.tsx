@@ -8,10 +8,10 @@ type Props = {
   service?:IServices,
   setOpen: (open:boolean) => void;
   isUpdate?: boolean;
-  refetchData: () => void;
+  crudCall: (newService:any) => void;
 }
 
-const ServiceModal = ({service, setOpen, isUpdate=false, refetchData}: Props) => {
+const ServiceModal = ({service, setOpen, isUpdate=false, crudCall}: Props) => {
   const [services, setServices] = useState({
     name: service?.name || "",
     description: service?.description || ""
@@ -21,28 +21,28 @@ const ServiceModal = ({service, setOpen, isUpdate=false, refetchData}: Props) =>
     e.preventDefault();
     try {
       setLoading(true);
-      const response = await axios.put(`/api/service/update-service/${service?._id}`,services);
-      setLoading(false);
+      const response = await axios.put(`/api/service?serviceId=${service?._id}`,services);
       toast.success(response.data.message);
-      refetchData();
+      crudCall(response.data.service);
       setOpen(false);
     } catch (error: any) {
-      setLoading(false);
       toast.error(error.message);
+    }finally{
+      setLoading(false);
     }
   }
   const handleAddService = async (e:FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       setLoading(true);
-      const response = await axios.post(`/api/service/add-service`,services);
-      setLoading(false);
+      const response = await axios.post(`/api/service`,services);
       toast.success(response.data.message);
-      refetchData();
+      crudCall(response.data.service);
       setOpen(false);
     } catch (error: any) {
-      setLoading(false);
       toast.error(error.message);
+    }finally{
+      setLoading(false)
     }
   }
   return (

@@ -1,13 +1,17 @@
 'use client'
-import { useUser } from '@/app/admin/context/UserContext'
-import axios from 'axios';
-import { Facebook, File, Instagram, Linkedin, Upload } from 'lucide-react'
 import React, { ChangeEvent, useEffect, useState } from 'react'
+import axios from 'axios';
 import toast from 'react-hot-toast';
+import { Facebook, File, Instagram, Linkedin, Upload } from 'lucide-react'
+import { IUser } from '@/lib/models/userSchema';
+import { useRouter } from 'next/navigation';
 
 const MAX_FILE_SIZE = 50 * 1024;
-const Page = () => {
-    const {user, refetchUser} = useUser();
+type Props = {
+    user:IUser
+}
+const FileAddSection = ({user}:Props) => {
+    const router = useRouter()
     const [loading, setLoading] = useState(false);
     const [links, setLinks] = useState({
         faceBookLink:"",
@@ -38,7 +42,7 @@ const Page = () => {
         try {
             const response = await axios.put("/api/user/add-links",links);
             toast.success(response.data.message);
-            await refetchUser()
+            router.refresh()
         } catch (error: any) {
             console.log("Error in sending links: ", error.message)
             toast.error(error.response.data.message);
@@ -54,7 +58,7 @@ const Page = () => {
             }
             const response = await axios.put("/api/user/update-cv",{pdf});
             toast.success(response.data.message);
-            await refetchUser()
+           router.refresh()
         } catch (error: any) {
             console.log("Error in sending links: ", error.message)
             toast.error(error.response.data.message);
@@ -151,4 +155,4 @@ const Page = () => {
   )
 }
 
-export default Page
+export default FileAddSection

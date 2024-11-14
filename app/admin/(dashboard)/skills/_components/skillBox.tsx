@@ -3,17 +3,15 @@ import SkillModal from './SkillModal';
 import AlertDailog from '../../_components/Alert-dailog';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { ISkills } from '@/lib/models/skillsSchema';
 
 type Props = {
-    data:{
-      name: string,
-    description: string,
-    _id: string
-    }
-    refetchData: () => void, 
+    data:ISkills,
+    onDelete: () => void, 
+    onUpdate:(newSkill:any) => void
 }
 
-const SkillBox = ({data, refetchData}: Props) => {
+const SkillBox = ({data, onDelete, onUpdate}: Props) => {
  
   const [open, setOpen] = useState(false);
   const [openAlertDialog, setOpenAlertDilog] = useState(false);
@@ -22,11 +20,11 @@ const SkillBox = ({data, refetchData}: Props) => {
   const skillDeleteHandler = async () => {
     try {
       setLoading(true);
-      const response  = await axios.delete(`/api/skills/remove-skills/${data?._id}`);
+      const response  = await axios.delete(`/api/skills?skillId=${data?._id}`);
       setLoading(false);
       toast.success(response.data.message);
       setOpenAlertDilog(false);
-      refetchData();
+      onDelete();
     } catch (error: any) {
       setLoading(false);
       toast.error(error.response.data.message);
@@ -52,7 +50,7 @@ const SkillBox = ({data, refetchData}: Props) => {
         </div>
         </div>
         {
-          open && <SkillModal setOpen={setOpen} data={data} refetchAllskill={refetchData} isUpdate />
+          open && <SkillModal setOpen={setOpen} data={data} crudCall={onUpdate} isUpdate />
         }
         {
           openAlertDialog && <AlertDailog loading={loading} setOpen={setOpenAlertDilog} onClickHandler={skillDeleteHandler} />

@@ -44,7 +44,7 @@ const Page = ({params}:Props) => {
   return (
     <div className=' w-full flex justify-center items-center min-h-screen h-auto md:pt-[40px] pt-[30px]'>
       <div className=' grid lg:grid-cols-2 grid-cols-1 md:gap-5 gap-4'>
-        <div className=' lg:space-y-5 md:space-y-4 space-y-3'>
+        <div className=' lg:space-y-5 md:space-y-4 space-y-3 my-auto'>
           <h1 className=' 2xl:text-5xl xl:text-4xl md:text-3xl text-2xl font-mono font-extrabold'>{project?.title}</h1>
           <p className='2xl:text-2xl xl:text-xl md:text-lg text-base dark:text-gray-300 text-gray-700'>{project?.description}</p>
          <div className=' overflow-hidden relative p-2 bg-blue-500 dark:bg-green-500 w-fit pr-10'>
@@ -82,7 +82,7 @@ const Page = ({params}:Props) => {
               project && project?.samplWorks?.map((item, index) => (
                 <div key={index} className=' flex-none w-full'>
                   <Image src={item?.url} width={1000} height={1000} alt={`sample-image-${index}`}
-                  className=' object-cover aspect-video w-full'
+                  className=' object-contain h-[250px] sm:h-[350px] md:h-[450px] lg:h-[550px] xl:h-[650px] w-full'
                   />
                   </div>
               ))

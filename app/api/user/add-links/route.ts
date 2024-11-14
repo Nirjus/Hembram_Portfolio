@@ -34,7 +34,8 @@ export async function PUT(req: NextRequest) {
         await user.save();
         return NextResponse.json({
             success: true,
-            message: "User Info updated"
+            message: "User Info updated",
+            user
         }, { status: 200 })
 
     } catch (error: any) {

@@ -1,40 +1,16 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import SectionHeader from '../Section-heading'
-import { HeartHandshake, Loader2 } from 'lucide-react'
-// import { services } from '@/app/data/data'
+import { HeartHandshake } from 'lucide-react'
 import ServiceBox from './ServiceBox'
-import axios from 'axios'
 import { IServices } from '@/lib/models/serviceSchema'
 
-// type Props = {}
+type Props = {
+  services: IServices[]
+}
 
-const Services = () => {
-  const [services, setServices] = useState<IServices[]>([] as IServices[]);
-  const [loading, setLoading] = useState(false);
-  const getUser = async () => {
-    setLoading(true);
-    try {
-      const response = await axios.get(`/api/service/get-all`);
-
-      setServices(response.data.services);
-    } catch (error: any) {
-      console.error(error.response.data.message);
-    }finally{
-      setLoading(false);
-    }
-  }
-  useEffect(() => {
-   getUser();
-  },[])
-  
-  if(loading){
-    return(
-      <div className=' flex w-full justify-center items-center h-screen'>
-        <Loader2 size={35} className=' text-blue-500 dark:text-green-500 animate-spin' />
-      </div>
-    )
-  }
+const Services = ({services}:Props) => {
+ 
   return (
     <div className=' w-full min-h-screen h-auto pt-[90px]'>
     
@@ -47,7 +23,7 @@ const Services = () => {
     }
   </div>
   {
-       !loading && services.length === 0 && (
+        services.length === 0 && (
           <div className=' mt-12 p-1'>
           <p className=' text-center text-lg text-gray-700 dark:text-gray-300 font-mono'>No Services in this section</p>
           <p className=' text-sm text-center text-gray-700 dark:text-gray-300'>Add a Services for showcase</p>

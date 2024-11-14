@@ -10,7 +10,6 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { IUser } from "@/lib/models/userSchema";
-import axios from "axios";
 
 const Footer = () => {
   const [user, setUser] = useState<IUser>({} as IUser);
@@ -18,10 +17,16 @@ const Footer = () => {
   const getUser = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`/api/user/getUser`);
-      setUser(response.data.user);
+      const response = await fetch(`/api/user`,{
+        method:"GET",
+        cache:"no-store"
+      });
+      if(response.ok){
+        const data = await response.json()
+        setUser(data.user);
+      }
     } catch (error: any) {
-      console.error(error.response.data.message);
+      console.error('[ERROR] error in fetching user data: ', error.message);
     } finally {
       setLoading(false);
     }
@@ -72,7 +77,7 @@ const Footer = () => {
               <div className=" w-full pt-5 flex items-center justify-center">
                 <Loader2
                   size={35}
-                  className=" text-blue-500 dark:text-green-500"
+                  className=" animate-spin text-blue-500 dark:text-green-500"
                 />
               </div>
             ) : (

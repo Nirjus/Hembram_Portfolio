@@ -1,23 +1,14 @@
 "use client";
-import { LucideIcon } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import routesArray from "../constants/routesArray";
 
-type Props = {
-  routes: { itemName: string; route: string; icon: LucideIcon }[];
-};
 
-const SideBar = ({ routes }: Props) => {
-  const [selected, setSelected] = useState(0);
-  const router = useRouter()
+const SideBar = () => {
   const pathname = usePathname();
+  const router = useRouter()
+  const [selected, setSelected] = useState(routesArray.findIndex(route => pathname.startsWith(route.route)));
 
-  useEffect(() => {
-     const currentIndex = routes.findIndex(route => route.route === pathname);
-     if(currentIndex !== -1){
-        setSelected(currentIndex);
-     }
-  },[pathname, routes])
  
   const onClickHandler = (index: number,route: string) => {
     setSelected(index);
@@ -26,7 +17,7 @@ const SideBar = ({ routes }: Props) => {
   return (
     <aside className=" fixed inset-y-0 h-full mt-[80px] lg:pt-4 pt-1 z-40 xl:w-[300px] lg:w-[250px] md:w-[190px] w-[80px] bg-[#83838335] dark:bg-[#7171714f]  backdrop-blur backdrop-filter">
       <div className=" space-y-3">
-        {routes.map((item, index) => (
+        {routesArray.map((item, index) => (
             <div
              key={index}
              onClick={() => onClickHandler(index,item.route)}
