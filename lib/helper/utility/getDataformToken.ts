@@ -1,7 +1,7 @@
 import { NextRequest } from "next/server";
 import jwt, { JwtPayload } from "jsonwebtoken"
 
-const jwtSecret: string = process.env.JWT_SECRET!
+const jwtSecret = process.env.JWT_SECRET!
 
 
 export const getDataFromToken = (req: NextRequest) => {

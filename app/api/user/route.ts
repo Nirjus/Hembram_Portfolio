@@ -3,30 +3,24 @@ import connectDB from "@/lib/config/DB";
 import User from "@/lib/models/userSchema";
 import { getDataFromToken } from "@/lib/helper/utility/getDataformToken";
 
-const userEmail = process.env.USER_EMAIL!;
-
 (async function(){
   await connectDB()
 })()
 
 export async function GET() {
     try {
-
-        const user = await User.findOne({ email: userEmail });
-
+        const user = await User.findOne({});
         if (!user) {
             return NextResponse.json({
                 success: false,
                 message: "No user found"
             }, { status: 400 })
         }
-
         return NextResponse.json({
             success: true,
             message: "User found",
             user
         }, { status: 200 })
-
     } catch (error: any) {
         return NextResponse.json({
             success: false,

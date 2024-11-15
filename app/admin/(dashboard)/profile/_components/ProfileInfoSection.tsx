@@ -11,13 +11,12 @@ type Props = {
 }
 
 const ProfileInfoSection = ({user}: Props) => {
-  // const router = use
     const [loading, setLoading] = useState(false);
     const [tabIndex, setTabIndex] = useState(0)
     const [users, setUsers] = useState({
-      name: user.name,
-      description: user.description,
-      subHeading:user.subHeading
+      name: user?.name || "",
+      description: user?.description || "",
+      subHeading:user?.subHeading || ""
     });
   
     const handleUpdateUser = async (e: ChangeEvent<HTMLFormElement>) => {
