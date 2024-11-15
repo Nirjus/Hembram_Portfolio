@@ -10,7 +10,7 @@ const getUser = async () => {
   try {
     const response = await fetch(`${domainName}/api/user`,{
       method:"GET",
-      cache:"no-store"
+      // cache:"no-store"
     });
     if(response.ok){
       const data = await response.json()
@@ -24,7 +24,7 @@ const getSkills = async () => {
   try {
     const response = await fetch(`${domainName}/api/skills`,{
       method:"GET",
-      cache:"no-store"
+      // cache:"no-store"
     });
     if(response.ok){
       const data = await response.json()      
@@ -38,7 +38,7 @@ const getProjects = async () => {
   try {
     const response = await fetch(`${domainName}/api/project`,{
       method:"GET",
-      cache:"no-store"
+      // cache:"no-store"
     });
     if(response.ok){
       const data = await response.json()
@@ -52,7 +52,7 @@ const getServices = async () => {
   try {
     const response = await fetch(`${domainName}/api/service`,{
       method:"GET",
-      cache:"no-store"
+      // cache:"no-store"
     });
     if(response.ok){
       const data = await response.json()
