@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import connectDB from "@/lib/config/DB";
 import Project from "@/lib/models/projectSchema";
 import Skills from "@/lib/models/skillsSchema";
@@ -6,10 +8,10 @@ import User from "@/lib/models/userSchema";
 export async function fetchAllUserData() {
     await connectDB();
     try {
-       const user = await User.find({})
+       const user = await User.findOne({})
         const projectsCount = await Project.countDocuments();
         const skillsCount = await Skills.countDocuments();
-        const userObj = JSON.parse(JSON.stringify(user.at(0)))
+        const userObj = JSON.parse(JSON.stringify(user))
         const data = { ...userObj, projectsCount, skillsCount }
         return {
             success: true,

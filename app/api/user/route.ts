@@ -8,7 +8,7 @@ import User from "@/lib/models/userSchema";
 
 export async function GET() {
     try {
-        const user = await User.find({});
+        const user = await User.findOne({});
         if (!user) {
             return NextResponse.json({
                 success: false,
@@ -18,7 +18,7 @@ export async function GET() {
         return NextResponse.json({
             success: true,
             message: "User found",
-            user: user.at(0)
+            user
         }, { status: 200 })
     } catch (error: any) {
         return NextResponse.json({
