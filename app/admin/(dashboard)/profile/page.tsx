@@ -7,7 +7,7 @@ const refetchUser = async () => {
   try {
     const response = await fetch(`${domainName}/api/user/profile`,{
       method:"GET",
-      cache:"no-store"
+      // cache:"no-store"
     });
     if(response.ok){
       const data = await response.json()
