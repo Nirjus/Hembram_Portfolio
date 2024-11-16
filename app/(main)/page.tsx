@@ -18,6 +18,7 @@ const getUser = async () => {
     }
   } catch (error: any) {
     console.log("[ERROR] error in fetching user: ",error.message);
+    return null;
   }
 }
 const getSkills = async () => {
@@ -32,6 +33,7 @@ const getSkills = async () => {
     }
   } catch (error: any) {
     console.log("[ERROR] error in fetching skills: ", error.message);
+    return []
   }
 }
 const getProjects = async () => {
@@ -46,6 +48,7 @@ const getProjects = async () => {
     }
   } catch (error: any) {
     console.log("[ERROR] error in fetching projects: ",error.message);
+    return []
   }
 }
 const getServices = async () => {
@@ -60,6 +63,7 @@ const getServices = async () => {
     }
   } catch (error: any) {
     console.error("[ERROR] error in fetching services: ", error.message);
+    return []
   }
 }
 export default async function HomePage() {
@@ -74,16 +78,16 @@ const [resultUser,resultSkills,resultProjects,resultServices] = await Promise.al
     <div className=" relative main-background">
     <SideToggleBar />
       <section id="home">
-        <Hero user={resultUser || null} />
+        <Hero user={resultUser} />
       </section>
       <section id="skills">
-        <Skills skills={resultSkills || []} />
+        <Skills skills={resultSkills} />
       </section>
       <section id="project">
-        <Projects projects={resultProjects || []} />
+        <Projects projects={resultProjects} />
       </section>
       <section id="services">
-        <Services services={resultServices || []} />
+        <Services services={resultServices} />
       </section>
     </div>
   );

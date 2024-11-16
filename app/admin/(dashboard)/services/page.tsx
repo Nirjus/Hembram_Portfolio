@@ -1,16 +1,17 @@
 import React from "react";
-import axios from "axios";
 import ServiceOverview from "./_components/ServiceOverview";
 
 const domainName = process.env.DOMAIN_NAME!;
 const getAllServices = async () => {
   try {
-    const response = await axios.get(`${domainName}/api/service`, {
-      headers: {
-        "Cache-Control": "no-store", // Prevent caching
-      },
+    const response = await fetch(`${domainName}/api/service`, {
+      method:"GET",
+      cache:"no-store"
     });
-    return response.data.services;
+    if(response.ok){
+      const data = await response.json();
+      return data.services;
+    }
   } catch (error: any) {
     console.log(
       "[ERROR]: error in fetching service data: ",

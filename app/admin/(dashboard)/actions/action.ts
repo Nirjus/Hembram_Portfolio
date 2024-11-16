@@ -9,7 +9,8 @@ export async function fetchAllUserData() {
        const user = await User.findOne({})
         const projectsCount = await Project.countDocuments();
         const skillsCount = await Skills.countDocuments();
-        const data = { ...user?.toObject(), projectsCount, skillsCount }
+        const userObj = JSON.parse(JSON.stringify(user))
+        const data = { ...userObj, projectsCount, skillsCount }
         return {
             success: true,
             message: "All data are return",
