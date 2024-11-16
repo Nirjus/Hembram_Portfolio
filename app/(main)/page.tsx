@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+// 'auto' | 'force-dynamic' | 'error' | 'force-static'
 import React from "react";
 import Hero from "./_components/Hero/Hero";
 import Skills from "./_components/Skils/Skills";
