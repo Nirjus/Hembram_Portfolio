@@ -6,7 +6,8 @@ const domainName = process.env.DOMAIN_NAME!
 const refetchUser = async () => {
   try {
     const response = await fetch(`${domainName}/api/user/profile`,{
-      method:"POST",
+      method:"GET",
+      cache:"no-store"
     });
     if(response.ok){
       const data = await response.json()

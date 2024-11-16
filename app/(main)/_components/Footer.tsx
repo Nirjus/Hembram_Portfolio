@@ -18,7 +18,8 @@ const Footer = () => {
     setLoading(true);
     try {
       const response = await fetch(`/api/user/profile`,{
-        method:"POST",
+        method:"GET",
+        cache:"no-store"
       });
       if(response.ok){
         const data = await response.json()

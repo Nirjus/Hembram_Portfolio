@@ -2,7 +2,7 @@ import connectDB from "@/lib/config/DB";
 import User from "@/lib/models/userSchema";
 import { NextResponse } from "next/server";
 
-export async function POST() {
+export async function GET() {
       await connectDB()
       try {
           const user = await User.findOne({});
