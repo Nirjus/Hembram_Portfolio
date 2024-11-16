@@ -12,8 +12,8 @@ const Hero = ({user}:Props) => {
 
   return (
     <div className=' w-full sm:h-screen h-auto sm:pt-[40px] pt-[50px]' >
-        <div className=" flex max-lg:flex-col-reverse justify-center w-full h-full ">
-        <div className=' w-full flex justify-center items-center sm:items-start max-sm:text-center flex-col space-y-6 lg:pr-10 max-lg:pt-10 '>
+        <div className=" grid lg:grid-cols-2 grid-cols-1 md:gap-5 gap-4 w-full h-full ">
+        <div className=' w-full flex justify-center items-center sm:items-start max-sm:text-center flex-col space-y-6 lg:pr-10 max-lg:pt-5 '>
           <Reveal>
           <h1 className='  lg:text-6xl md:text-5xl text-4xl font-extrabold  text-black dark:text-white font-poppins'>Hello I am <span className=" text-blue-500 dark:text-green-500 inline-block">{user?.name}</span></h1>
           </Reveal>

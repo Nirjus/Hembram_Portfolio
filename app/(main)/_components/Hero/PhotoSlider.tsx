@@ -64,7 +64,7 @@ const PhotoSlider = ({ images }: Props) => {
             width={1000}
               src={imageUrl?.url}
               alt={`Photo_pic_${index}`}
-              className=" object-cover h-full aspect-video w-full"
+              className=" object-cover h-full w-full"
             />
           </div>
         ))}
