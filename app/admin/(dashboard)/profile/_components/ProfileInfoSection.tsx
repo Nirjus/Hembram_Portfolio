@@ -1,6 +1,6 @@
 'use client'
 import axios from 'axios';
-import React, { ChangeEvent, useState } from 'react'
+import React, { FormEvent, useState } from 'react'
 import toast from 'react-hot-toast';
 import { IUser } from '@/lib/models/userSchema';
 import PicPage from './UpdatePictureSection';
@@ -19,7 +19,7 @@ const ProfileInfoSection = ({user}: Props) => {
       subHeading:user?.subHeading || ""
     });
   
-    const handleUpdateUser = async (e: ChangeEvent<HTMLFormElement>) => {
+    const handleUpdateUser = async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       setLoading(true);
       try {
@@ -31,8 +31,8 @@ const ProfileInfoSection = ({user}: Props) => {
         toast.success(response.data.message);
          setUsers(response.data.user)
       } catch (error: any) {
-        console.error("Error in updating user INFO", error.response.data.message);
-        toast.error(error.response.data.message);
+        console.error("Error in updating user INFO", error.message);
+        toast.error(error.message);
       } finally {
         setLoading(false);
       }

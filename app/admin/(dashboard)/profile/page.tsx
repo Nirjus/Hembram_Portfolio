@@ -14,6 +14,7 @@ const refetchUser = async () => {
     }
   } catch (error: any) {
     console.log("[ERROR] error in fetching user: ", error.message);
+    return null
   }
 };
 
