@@ -6,10 +6,10 @@ import User from "@/lib/models/userSchema";
 export async function fetchAllUserData() {
     await connectDB();
     try {
-       const user = await User.findOne({})
+       const user = await User.find({})
         const projectsCount = await Project.countDocuments();
         const skillsCount = await Skills.countDocuments();
-        const userObj = JSON.parse(JSON.stringify(user))
+        const userObj = JSON.parse(JSON.stringify(user.at(0)))
         const data = { ...userObj, projectsCount, skillsCount }
         return {
             success: true,

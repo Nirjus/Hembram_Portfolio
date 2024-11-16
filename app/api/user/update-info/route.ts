@@ -30,7 +30,7 @@ export async function PUT(req: NextRequest) {
         if(subHeading && user.subHeading !== subHeading){
             user.subHeading = subHeading
         }
-        await user?.save()
+        await user.save()
           
         return NextResponse.json({
             success: true,
