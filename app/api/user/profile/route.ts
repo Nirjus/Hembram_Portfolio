@@ -3,8 +3,34 @@ import { getDataFromToken } from "@/lib/helper/utility/getDataformToken";
 import User from "@/lib/models/userSchema";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function PUT(req: NextRequest) {
+(async function(){
     await connectDB()
+  })()
+  
+  export async function GET() {
+      try {
+          const user = await User.findOne({});
+          if (!user) {
+              return NextResponse.json({
+                  success: false,
+                  message: "No user found"
+              }, { status: 400 })
+          }
+          return NextResponse.json({
+              success: true,
+              message: "User found",
+              user
+          }, { status: 200 })
+      } catch (error: any) {
+          return NextResponse.json({
+              success: false,
+              message: error.message
+          }, { status: 500 })
+      }
+  }
+  
+
+export async function PUT(req: NextRequest) {
     try {
         const userId = getDataFromToken(req);
         const { name, description, subHeading } = await req.json();

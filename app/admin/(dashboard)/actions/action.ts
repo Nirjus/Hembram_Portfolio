@@ -1,5 +1,3 @@
-export const dynamic = 'force-dynamic'
-
 import connectDB from "@/lib/config/DB";
 import Project from "@/lib/models/projectSchema";
 import Skills from "@/lib/models/skillsSchema";

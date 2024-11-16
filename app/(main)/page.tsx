@@ -8,7 +8,7 @@ import SideToggleBar from "./_components/sideToggleBar";
 const domainName = process.env.DOMAIN_NAME!
 const getUser = async () => {
   try {
-    const response = await fetch(`${domainName}/api/user`,{
+    const response = await fetch(`${domainName}/api/user/profile`,{
       method:"GET",
       cache:"no-store"
     });

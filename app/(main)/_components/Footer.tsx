@@ -17,7 +17,7 @@ const Footer = () => {
   const getUser = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`/api/user`,{
+      const response = await fetch(`/api/user/profile`,{
         method:"GET",
         cache:"no-store"
       });
