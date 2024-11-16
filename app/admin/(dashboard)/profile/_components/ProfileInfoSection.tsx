@@ -27,7 +27,7 @@ const ProfileInfoSection = ({user}: Props) => {
           toast.error("Fill all filds first");
           return;
         }
-        const response = await axios.put("/api/user", users);
+        const response = await axios.put("/api/user/update-info", users);
         toast.success(response.data.message);
          setUsers(response.data.user)
       } catch (error: any) {
