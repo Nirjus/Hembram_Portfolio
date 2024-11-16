@@ -1,5 +1,3 @@
-export const dynamic = 'force-dynamic'
-// 'auto' | 'force-dynamic' | 'error' | 'force-static'
 import React from "react";
 import ProfileInfoSection from "./_components/ProfileInfoSection";
 import { ShieldCheck } from "lucide-react";
