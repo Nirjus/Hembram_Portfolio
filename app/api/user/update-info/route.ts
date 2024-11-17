@@ -6,7 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function PUT(req: NextRequest) {
     await connectDB()
     try {
-        const userId = getDataFromToken(req);
+        const userId = getDataFromToken();
         const { name, description, subHeading } = await req.json();
         if (!userId) {
             return NextResponse.json({

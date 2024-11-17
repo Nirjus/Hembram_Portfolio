@@ -6,7 +6,7 @@ import User from "@/lib/models/userSchema";
 export async function PUT(req: NextRequest) {
     await connectDB();
     try {
-        const userId = getDataFromToken(req);
+        const userId = getDataFromToken();
         const { faceBookLink, instaLink, linkdeenLink } = await req.json();
         if (!userId) {
             return NextResponse.json({

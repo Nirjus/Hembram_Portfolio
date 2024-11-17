@@ -8,7 +8,7 @@ import cloudinary from "@/lib/config/cloudinary";
 export async function PUT(req: NextRequest) {
     await connectDB();
     try {
-        const userId = getDataFromToken(req);
+        const userId = getDataFromToken();
         const { pdf } = await req.json();
         if (!userId) {
             return NextResponse.json({

@@ -1,16 +1,14 @@
 'use client'
 import React, { ChangeEvent, useEffect, useState } from 'react'
-import axios from 'axios';
 import { Plus, X } from 'lucide-react';
 import Image from 'next/image';
 import toast from 'react-hot-toast';
 import { IUser } from '@/lib/models/userSchema';
-import { useRouter } from 'next/navigation';
+import { updatePhotos } from '@/app/actions/userActions';
 type Props = {
   user:IUser
 }
 const PicPage = ({user}:Props) => {
-  const router = useRouter()
   const [images, setImages] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const maxFileSize = 50 * 1024; // 50KB in bytes
@@ -36,20 +34,19 @@ const PicPage = ({user}:Props) => {
   };
   const handleUpdateUserProfilePicture = async () => {
     setLoading(true);
-    try {
       if (images.length === 0) {
+        setLoading(false)
         toast.error("Fill select 1 image");
         return;
       }
-      const response = await axios.put("/api/user/pic-update", {photos:images});
-      toast.success(response.data.message);
-      router.refresh();
-    } catch (error: any) {
-      console.error("Error in updating user INFO", error.response.data.message);
-      toast.error(error.response.data.message);
-    } finally {
-      setLoading(false);
-    }
+      const response = await updatePhotos(images, "/admin/profile")
+      setLoading(false)
+      if(response.success){
+        toast.success(response.message);
+      }else{
+       toast.error(response.message)
+      }
+      
   };
   const removeImage = (index: number) => {
     setImages((prevInd) => prevInd.filter((_, i) => i !== index));

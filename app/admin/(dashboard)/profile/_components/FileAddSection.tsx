@@ -1,17 +1,15 @@
 'use client'
 import React, { ChangeEvent, useEffect, useState } from 'react'
-import axios from 'axios';
 import toast from 'react-hot-toast';
 import { Facebook, File, Instagram, Linkedin, Upload } from 'lucide-react'
 import { IUser } from '@/lib/models/userSchema';
-import { useRouter } from 'next/navigation';
+import { addLinks, updateCV } from '@/app/actions/userActions';
 
 const MAX_FILE_SIZE = 50 * 1024;
 type Props = {
     user:IUser
 }
 const FileAddSection = ({user}:Props) => {
-    const router = useRouter()
     const [loading, setLoading] = useState(false);
     const [links, setLinks] = useState({
         faceBookLink:"",
@@ -39,32 +37,28 @@ const FileAddSection = ({user}:Props) => {
     }
      const handleAddLink = async () => {
         setLoading(true);
-        try {
-            const response = await axios.put("/api/user/add-links",links);
-            toast.success(response.data.message);
-            router.refresh()
-        } catch (error: any) {
-            console.log("Error in sending links: ", error.message)
-            toast.error(error.response.data.message);
-        }finally{
-            setLoading(false);
-        } 
+            const response = await addLinks(links, "/admin/profile")
+            setLoading(false)
+            if(response.success){
+                toast.success(response.message)
+            }else{
+                toast.error(response.message)
+            }
+       
      }
      const handleUpdateCV = async () => {
-        setLoading(true);
-        try {
+            setLoading(true);
             if(!pdf){
-                return;
+             setLoading(false)
+             return;
             }
-            const response = await axios.put("/api/user/update-cv",{pdf});
-            toast.success(response.data.message);
-           router.refresh()
-        } catch (error: any) {
-            console.log("Error in sending links: ", error.message)
-            toast.error(error.response.data.message);
-        }finally{
-            setLoading(false);
-        } 
+            const response = await updateCV(pdf, "/admin/profile");
+            setLoading(false)
+            if(response.success){
+                toast.success(response.message);
+            }else{
+                toast.success(response.message);
+            }      
      }
     useEffect(() => {
     if(user){

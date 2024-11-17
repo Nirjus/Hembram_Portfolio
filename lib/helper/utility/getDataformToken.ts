@@ -1,13 +1,13 @@
-import { NextRequest } from "next/server";
 import jwt, { JwtPayload } from "jsonwebtoken"
+import { cookies } from "next/headers";
 
 const jwtSecret = process.env.JWT_SECRET!
 
 
-export const getDataFromToken = (req: NextRequest) => {
+export const getDataFromToken = () => {
     try {
-
-        const token = req.cookies.get('token')?.value || ""
+        const cookie = cookies()
+        const token = cookie.get("token")?.value || ""
 
         const decodedToken = jwt.verify(token, jwtSecret) as JwtPayload;
 

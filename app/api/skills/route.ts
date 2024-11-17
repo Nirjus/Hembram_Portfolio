@@ -28,7 +28,7 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
     try {
-        const userId = getDataFromToken(req);
+        const userId = getDataFromToken();
         const { name, description } = await req.json();
         if (!userId) {
             return NextResponse.json({
@@ -64,7 +64,7 @@ export async function POST(req: NextRequest) {
 
 export async function PUT(req: NextRequest) {
     try {
-        const userId = await getDataFromToken(req);
+        const userId = await getDataFromToken();
         const { name, description } = await req.json();
         const { searchParams } = new URL(req.url)
         const skillId = searchParams.get("skillId")
@@ -109,7 +109,7 @@ export async function PUT(req: NextRequest) {
 
 export async function DELETE(req: NextRequest) {
     try {
-        const userId = getDataFromToken(req);
+        const userId = getDataFromToken();
         if (!userId) {
             return NextResponse.json({
                 success: false,

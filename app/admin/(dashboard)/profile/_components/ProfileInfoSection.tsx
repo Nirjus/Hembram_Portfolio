@@ -1,11 +1,11 @@
 'use client'
-import axios from 'axios';
-import React, { FormEvent, useState } from 'react'
+import React, { useState } from 'react'
 import toast from 'react-hot-toast';
 import { IUser } from '@/lib/models/userSchema';
 import PicPage from './UpdatePictureSection';
 import FileAddSection from './FileAddSection';
 import SideBar from './SideBar';
+import { userUpdate } from '@/app/actions/userActions';
 type Props = {
     user:IUser
 }
@@ -19,23 +19,21 @@ const ProfileInfoSection = ({user}: Props) => {
       subHeading:user?.subHeading || ""
     });
   
-    const handleUpdateUser = async (e: FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
+    const handleUpdateUser = async () => {
       setLoading(true);
-      try {
         if (!users.name || !users.description || !users.subHeading) {
+          setLoading(false)
           toast.error("Fill all filds first");
           return;
         }
-        const response = await axios.put("/api/user/update-info", users);
-        toast.success(response.data.message);
-         setUsers(response.data.user)
-      } catch (error: any) {
-        console.error("Error in updating user INFO", error.message);
-        toast.error(error.message);
-      } finally {
-        setLoading(false);
-      }
+     const result = await userUpdate(users,"/admin/profile")
+     setLoading(false)
+     if(result.success){
+      toast.success(result.message)
+     }else{
+      toast.error(result.message)
+     }
+     
     };
   
   return (
@@ -44,7 +42,7 @@ const ProfileInfoSection = ({user}: Props) => {
    {
       tabIndex === 0 && (
         <form
-        onSubmit={handleUpdateUser}
+        action={handleUpdateUser}
         className=" w-full md:p-4 p-2 md:mt-7 mt-4 "
       >
         <div className=" mb-5 space-y-3 mx-auto  flex flex-col xl:w-[50%] lg:w-[60%] md:w-[70%] sm:w-[80%] w-[90%] ">

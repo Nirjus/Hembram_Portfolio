@@ -29,7 +29,7 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
     try {
-        const userId = getDataFromToken(req);
+        const userId = getDataFromToken();
         const { category, title, description, timeLine, visitLink, samplWorks } = await req.json();
         if (!userId) {
             return NextResponse.json({
@@ -81,7 +81,7 @@ export async function POST(req: NextRequest) {
 
 export async function DELETE(req: NextRequest) {
     try {
-        const userId = getDataFromToken(req);
+        const userId = getDataFromToken();
         if (!userId) {
             return NextResponse.json({
                 success: false,
@@ -125,7 +125,7 @@ export async function DELETE(req: NextRequest) {
 
 export async function PUT(req: NextRequest) {
     try {
-        const userId = getDataFromToken(req);
+        const userId = getDataFromToken();
         const { category, title, description, timeLine, visitLink, samplWorks } = await req.json();
         if (!userId) {
             return NextResponse.json({
