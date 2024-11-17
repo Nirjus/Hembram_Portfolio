@@ -4,22 +4,12 @@ import Skills from "./_components/Skils/Skills";
 import Projects from "./_components/Projects/Projects";
 import Services from "./_components/Services/services";
 import SideToggleBar from "./_components/sideToggleBar";
+import { fetchUser } from "../actions/userActions";
 
 const domainName = process.env.DOMAIN_NAME!
 const getUser = async () => {
-  try {
-    const response = await fetch(`${domainName}/api/user/profile`,{
-      method:"GET",
-      // cache:"no-store"
-    });
-    if(response.ok){
-      const data = await response.json()
-      return data.user
-    }
-  } catch (error: any) {
-    console.log("[ERROR] error in fetching user: ",error.message);
-    return null;
-  }
+  const userData = await fetchUser()
+  return userData.user
 }
 const getSkills = async () => {
   try {

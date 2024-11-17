@@ -1,26 +1,27 @@
 import React from "react";
 import ProfileInfoSection from "./_components/ProfileInfoSection";
 import { ShieldCheck } from "lucide-react";
+import { fetchUser } from "@/app/actions/userActions";
 
-const domainName = process.env.DOMAIN_NAME!
-const refetchUser = async () => {
-  try {
-    const response = await fetch(`${domainName}/api/user/profile`,{
-      method:"GET",
-      // cache:"no-store"
-    });
-    if(response.ok){
-      const data = await response.json()
-     return data?.user
-    }
-  } catch (error: any) {
-    console.log("[ERROR] error in fetching user: ", error.message);
-    return null
-  }
-};
+// const domainName = process.env.DOMAIN_NAME!
+// const refetchUser = async () => {
+//   try {
+//     const response = await fetch(`${domainName}/api/user/profile`,{
+//       method:"GET",
+//       cache:"no-store"
+//     });
+//     if(response.ok){
+//       const data = await response.json()
+//      return data?.user
+//     }
+//   } catch (error: any) {
+//     console.log("[ERROR] error in fetching user: ", error.message);
+//     return null
+//   }
+// };
 
 export default async function Profile(){
-  const getUser = await refetchUser()
+  const getUser = await fetchUser()
 
   return (
     <section className=" w-full">
@@ -32,7 +33,7 @@ export default async function Profile(){
           <ShieldCheck className=" text-blue-500 dark:text-green-500" />
         </div>
       </div>
-          <ProfileInfoSection user={getUser} />
+          <ProfileInfoSection user={getUser.user} />
     </section>
   );
 };

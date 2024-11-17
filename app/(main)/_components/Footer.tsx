@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { IUser } from "@/lib/models/userSchema";
+import { fetchUser } from "@/app/actions/userActions";
 
 const Footer = () => {
   const [user, setUser] = useState<IUser>({} as IUser);
@@ -17,14 +18,8 @@ const Footer = () => {
   const getUser = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`/api/user/profile`,{
-        method:"GET",
-        cache:"no-store"
-      });
-      if(response.ok){
-        const data = await response.json()
-        setUser(data.user);
-      }
+     const userData = await fetchUser()
+     setUser(userData.user)
     } catch (error: any) {
       console.error('[ERROR] error in fetching user data: ', error.message);
     } finally {
